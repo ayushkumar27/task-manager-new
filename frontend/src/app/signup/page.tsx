@@ -5,7 +5,7 @@ import Navbar from '../components/navbar/page'
 import { RegisterUser } from '../../../lib/apis/user'
 import { useRouter } from 'next/navigation'
 
-const index = () => {
+const Index = () => {
 
   const toast = useToast()
   const router = useRouter()
@@ -90,4 +90,4 @@ const index = () => {
   )
 }
 
-export default index
+export default Index
