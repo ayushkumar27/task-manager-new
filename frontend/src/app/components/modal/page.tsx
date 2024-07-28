@@ -1,32 +1,31 @@
-import { Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay,Text } from '@chakra-ui/react'
-import React from 'react'
+import { Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from '@chakra-ui/react';
+import React, { ReactNode } from 'react';
 
 interface Props {
-    isOpen:any,
-    onClose:any,
-    title: string,
-    children?:any
+  isOpen: boolean;
+  onClose: () => void;
+  title: string;
+  children?: ReactNode; 
 }
 
-const ModalBox = ({isOpen,onClose,children,title}: Props) => {
+const ModalBox: React.FC<Props> = ({ isOpen, onClose, children, title }) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>{title}</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            {children}
-          </ModalBody>
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader>{title}</ModalHeader>
+        <ModalCloseButton />
+        <ModalBody>
+          {children}
+        </ModalBody>
+        <ModalFooter>
+          <Button colorScheme='blue' mr={3} onClick={onClose}>
+            Close
+          </Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
+  );
+};
 
-          <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={onClose}>
-              Close
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
-  )
-}
-
-export default ModalBox
+export default ModalBox;
