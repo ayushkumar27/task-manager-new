@@ -12,10 +12,20 @@ const Page = () => {
     const tokenDetail = getItemLocalStorage('token-details')
 
     if (tokenDetail) {
-      const { expiry } = JSON.parse(tokenDetail)
-      if (expiry > now.getTime()) {
-        router.push('/home')
-      } else {
+      try {
+        const parsedToken = JSON.parse(tokenDetail)
+        if (parsedToken && typeof parsedToken === 'object' && 'expiry' in parsedToken) {
+          const { expiry } = parsedToken
+          if (expiry > now.getTime()) {
+            router.push('/home')
+          } else {
+            router.push('/login')
+          }
+        } else {
+          router.push('/login')
+        }
+      } catch (error) {
+        console.error('Error parsing token details:', error)
         router.push('/login')
       }
     } else {
