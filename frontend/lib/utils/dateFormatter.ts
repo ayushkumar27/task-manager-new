@@ -1,4 +1,4 @@
-export const TimestampToDate = (timestamp: String) => {
+export const TimestampToDate = (timestamp: string) => {
     const date = new Date(timestamp);
 
     return date.toLocaleString('en-US', {
@@ -12,4 +12,3 @@ export const TimestampToDate = (timestamp: String) => {
         hour12: true
     })
 }
-
