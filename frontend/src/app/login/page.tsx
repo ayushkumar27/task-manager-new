@@ -11,8 +11,9 @@ const Index = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const router = useRouter()
-  const [alertMessage, setAlertMessage] = useState('')
-  const [alertType, setAlertType] = useState()
+  const [alertType, setAlertType] = useState<'success' | 'error' | 'info' | 'warning' | 'loading' | undefined>(undefined);
+  const [alertMessage, setAlertMessage] = useState<string | undefined>(undefined);
+
 
 
   const handleLogin = () => {
@@ -38,9 +39,9 @@ const Index = () => {
   }
 
   const clientId = '374367574313-msd8avj5u2qom3ep7haatisa834o3u98.apps.googleusercontent.com';
-  const handleLoginSuccess = async (response) => {
+  const handleLoginSuccess = async (response:any) => {
     try {
-      const res = await fetch('https://task-manager-new-cwse.onrender.com/api/auth/google', {
+      const res = await fetch('https://task-manager-logf.onrender.com/api/auth/google', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -61,15 +62,10 @@ const Index = () => {
     }
   };
 
-  const handleLoginFailure = (response) => {
+  const handleLoginFailure = (response:any) => {
     console.error('Login failed:', response);
   };
 
-  useEffect(() => {
-    if (router?.query?.token) {
-      localStorage.setItem('token', router?.query?.token as string);
-    }
-  }, [router?.query?.token]);
 
   return (
     <>
@@ -107,7 +103,7 @@ const Index = () => {
               Login
             </Button>
             <Text textAlign="center">
-              Don't have an account? <Link color="blue.500" href="/signup">Register</Link>
+              Don`&apos`t have an account? <Link color="blue.500" href="/signup">Register</Link>
             </Text>
 
             <GoogleLogin

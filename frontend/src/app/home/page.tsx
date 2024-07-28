@@ -1,24 +1,38 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/navbar/page';
-import { Box, Button, Card, CardBody, CardFooter, CardHeader, Flex, FormControl, FormLabel, Heading, HStack, Input, Popover, PopoverArrow, PopoverBody, PopoverCloseButton, PopoverContent, PopoverHeader, PopoverTrigger, Select, Text, Textarea, useDisclosure } from '@chakra-ui/react';
-import ModalBox from '../components/modal/page';
+import {
+  Box, Button, Card, CardBody, CardFooter, Flex, FormControl, FormLabel,
+  Heading, HStack, Input, Popover, PopoverArrow, PopoverBody, PopoverCloseButton,
+  PopoverContent, PopoverHeader, PopoverTrigger, Select, Text, Textarea,
+  useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton,
+  ModalBody, ModalFooter
+} from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
 import { createTask, deleteTask, editTask, getTaskbyId, getTasks, getTasksbyRange } from '../../../lib/apis/tasks';
 import { TimestampToDate } from '../../../lib/utils/dateFormatter';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 
 const Page = () => {
+
+  interface Task {
+    _id: string;
+    title: string;
+    description: string;
+    status: string;
+    created: string;
+    deadline: string;
+  }
+
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [status, setStatus] = useState('');
-  const [deadline, setDeadline] = useState();
-  const [created, setCreated] = useState();
+  const [deadline, setDeadline] = useState<string>('');  const [created, setCreated] = useState();
   const [searchQuery, setSearchQuery] = useState('');
-  const [filteredTasks, setFilteredTasks] = useState([]);
-  const [allTasks, setAllTasks] = useState([]);
+  const [filteredTasks, setFilteredTasks] = useState<Task[]>([]);
+  const [allTasks, setAllTasks] = useState<Task[]>([]);
   const [taskId, setTaskId] = useState();
-  const [range, setRange] = useState();
+  const [range, setRange] = useState<string>('')
 
   const handleAdd = () => {
     let payload = {
@@ -36,7 +50,7 @@ const Page = () => {
     });
   };
 
-  const handleEditView = (id) => {
+  const handleEditView = (id:any) => {
     getTaskbyId(id).then((res) => {
       setTitle(res.data.title);
       setDescription(res.data.description);
@@ -48,7 +62,7 @@ const Page = () => {
     });
   };
 
-  const handleEdit = (id) => {
+  const handleEdit = (id:any) => {
     let payload = {
       title: title,
       description: description,
@@ -64,7 +78,7 @@ const Page = () => {
     });
   };
 
-  const handleDelete = (id) => {
+  const handleDelete = (id:any) => {
     deleteTask(id).then((res) => {
       getTasks().then((res) => {
         setAllTasks(res.data);
@@ -73,7 +87,7 @@ const Page = () => {
     });
   };
 
-  const handleView = (id) => {
+  const handleView = (id:any) => {
     getTaskbyId(id).then((res) => {
       setTitle(res.data.title);
       setDescription(res.data.description);
@@ -95,7 +109,7 @@ const Page = () => {
     });
   };
 
-  const onDragEnd = async (result) => {
+  const onDragEnd = async (result:any) => {
     const { destination, source, draggableId } = result;
 
     if (!destination) return;
@@ -104,7 +118,7 @@ const Page = () => {
       return;
     }
 
-    const movedTask = filteredTasks.find(task => task._id === draggableId);
+    const movedTask = filteredTasks.find(task => task && task._id === draggableId);
 
     if (!movedTask) return;
 
@@ -244,126 +258,106 @@ const Page = () => {
             ))}
           </DragDropContext>
         </HStack>
-        <ModalBox title='Add a new task' isOpen={isOpenModal} onClose={onCloseModal}>
-          <FormControl mb={3}>
-            <FormLabel htmlFor='task-title'>Title</FormLabel>
-            <Input
-              id='task-title'
-              type='text'
-              placeholder='Enter Title'
-              onChange={(e) => setTitle(e.target.value)}
-            />
-          </FormControl>
-          <FormControl mb={3}>
-            <FormLabel htmlFor='task-description'>Description</FormLabel>
-            <Textarea
-              id='task-description'
-              placeholder='Enter task description'
-              onChange={(e) => setDescription(e.target.value)}
-            />
-          </FormControl>
-          <FormControl mb={3}>
-            <FormLabel htmlFor='task-status'>Status</FormLabel>
-            <Select
-              id='task-status'
-              placeholder='Select option'
-              onChange={(e) => setStatus(e.target.value)}
-            >
-              <option value='to-do'>To Do</option>
-              <option value='in-progress'>In Progress</option>
-              <option value='done'>Done</option>
-            </Select>
-          </FormControl>
-          <FormControl mb={3}>
-            <FormLabel htmlFor='task-deadline'>Deadline</FormLabel>
-            <Input
-              id='task-deadline'
-              type='date'
-              placeholder='Deadline'
-              onChange={(e) => setDeadline(e.target.value)}
-            />
-          </FormControl>
-          <Button
-            w='full'
-            colorScheme='blue'
-            onClick={handleAdd}
-          >
-            <AddIcon fontSize='12px' />
-            Add Task
-          </Button>
-        </ModalBox>
-        <ModalBox title='Edit task' isOpen={isOpenEditModal} onClose={onCloseEditModal}>
-          {taskId && (
-            <>
-              <FormControl mb={3}>
-                <FormLabel htmlFor='edit-task-title'>Title</FormLabel>
-                <Input
-                  id='edit-task-title'
-                  type='text'
-                  placeholder='Enter Title'
-                  defaultValue={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                />
-              </FormControl>
-              <FormControl mb={3}>
-                <FormLabel htmlFor='edit-task-description'>Description</FormLabel>
-                <Textarea
-                  id='edit-task-description'
-                  placeholder='Enter task description'
-                  defaultValue={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                />
-              </FormControl>
-              <FormControl mb={3}>
-                <FormLabel htmlFor='edit-task-status'>Status</FormLabel>
-                <Select
-                  id='edit-task-status'
-                  placeholder='Select option'
-                  defaultValue={status}
-                  onChange={(e) => setStatus(e.target.value)}
-                >
-                  <option value='to-do'>To Do</option>
-                  <option value='in-progress'>In Progress</option>
-                  <option value='done'>Done</option>
-                </Select>
-              </FormControl>
-              <FormControl mb={3}>
-                <FormLabel htmlFor='edit-task-deadline'>Deadline</FormLabel>
-                <Input
-                  id='edit-task-deadline'
-                  type='date'
-                  placeholder='Deadline'
-                  defaultValue={deadline ? deadline.substring(0, 10) : ''}
-                  onChange={(e) => setDeadline(e.target.value)}
-                />
-              </FormControl>
-              <Button
-                w='full'
-                colorScheme='blue'
-                onClick={() => handleEdit(taskId)}
-              >
-                <AddIcon fontSize='12px' />
-                Save
-              </Button>
-            </>
-          )}
-        </ModalBox>
-        <ModalBox title='Task Details' isOpen={isOpenViewModal} onClose={onCloseViewModal}>
-          {taskId && (
-            <>
-              <Heading size='sm'>Title:</Heading>
-              <Text mb={3}>{title}</Text>
-              <Heading size='sm'>Description:</Heading>
-              <Text mb={3}>{description}</Text>
-              <Heading size='sm'>Status:</Heading>
-              <Text mb={3}>{status}</Text>
-              <Heading size='sm'>Created on:</Heading>
-              <Text mb={3}>{created && TimestampToDate(created)}</Text>
-              <Heading size='sm'>Deadline:</Heading>
-              <Text>{deadline && TimestampToDate(deadline)}</Text>
-            </>
-          )}
-        </ModalBox>
+        <Modal isOpen={isOpenModal} onClose={onCloseModal} size='xl'>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Add New Task</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <FormControl mb={4}>
+              <FormLabel>Title</FormLabel>
+              <Input value={title} onChange={(e) => setTitle(e.target.value)} />
+            </FormControl>
+            <FormControl mb={4}>
+              <FormLabel>Description</FormLabel>
+              <Textarea value={description} onChange={(e) => setDescription(e.target.value)} />
+            </FormControl>
+            <FormControl mb={4}>
+              <FormLabel>Status</FormLabel>
+              <Select value={status} onChange={(e) => setStatus(e.target.value)} placeholder='Select status'>
+                <option value='to-do'>To Do</option>
+                <option value='in-progress'>In Progress</option>
+                <option value='done'>Done</option>
+              </Select>
+            </FormControl>
+            <FormControl mb={4}>
+              <FormLabel>Deadline</FormLabel>
+              <Input type='datetime-local' value={deadline} onChange={(e) => setDeadline(e.target.value)} />
+            </FormControl>
+          </ModalBody>
+          <ModalFooter>
+            <Button colorScheme='blue' onClick={handleAdd}>Add</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+
+      <Modal isOpen={isOpenEditModal} onClose={onCloseEditModal} size='xl'>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Edit Task</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <FormControl mb={4}>
+              <FormLabel>Title</FormLabel>
+              <Input value={title} onChange={(e) => setTitle(e.target.value)} />
+            </FormControl>
+            <FormControl mb={4}>
+              <FormLabel>Description</FormLabel>
+              <Textarea value={description} onChange={(e) => setDescription(e.target.value)} />
+            </FormControl>
+            <FormControl mb={4}>
+              <FormLabel>Status</FormLabel>
+              <Select value={status} onChange={(e) => setStatus(e.target.value)} placeholder='Select status'>
+                <option value='to-do'>To Do</option>
+                <option value='in-progress'>In Progress</option>
+                <option value='done'>Done</option>
+              </Select>
+            </FormControl>
+            <FormControl mb={4}>
+              <FormLabel>Deadline</FormLabel>
+              <Input type='datetime-local' value={deadline} onChange={(e) => setDeadline(e.target.value)} />
+            </FormControl>
+          </ModalBody>
+          <ModalFooter>
+            <Button colorScheme='blue' onClick={handleEdit}>Save Changes</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+
+      <Modal isOpen={isOpenViewModal} onClose={onCloseViewModal} size='xl'>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>View Task</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <FormControl mb={4}>
+              <FormLabel>Title</FormLabel>
+              <Input value={title} readOnly />
+            </FormControl>
+            <FormControl mb={4}>
+              <FormLabel>Description</FormLabel>
+              <Textarea value={description} readOnly />
+            </FormControl>
+            <FormControl mb={4}>
+              <FormLabel>Status</FormLabel>
+              <Select value={status} isDisabled placeholder='Select status'>
+  <option value='to-do'>To Do</option>
+  <option value='in-progress'>In Progress</option>
+  <option value='done'>Done</option>
+</Select>
+
+            </FormControl>
+            <FormControl mb={4}>
+              <FormLabel>Created</FormLabel>
+              <Input value={created} readOnly />
+            </FormControl>
+            <FormControl mb={4}>
+              <FormLabel>Deadline</FormLabel>
+              <Input type='datetime-local' value={deadline} readOnly />
+            </FormControl>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
       </Box>
     </>
   );
