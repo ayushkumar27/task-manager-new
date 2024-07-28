@@ -1,14 +1,12 @@
 import { Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from '@chakra-ui/react';
 import React, { ReactNode } from 'react';
 
-interface Props {
+const ModalBox: React.FC<{
   isOpen: boolean;
   onClose: () => void;
   title: string;
-  children?: ReactNode; 
-}
-
-const ModalBox: React.FC<Props> = ({ isOpen, onClose, children, title }) => {
+  children?: ReactNode;
+}> = ({ isOpen, onClose, children, title }) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
