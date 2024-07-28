@@ -1,3 +1,4 @@
+'use client'
 import { Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from '@chakra-ui/react';
 import React, { ReactNode } from 'react';
 
