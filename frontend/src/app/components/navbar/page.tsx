@@ -21,7 +21,7 @@ const Navbar = () => {
         setEmail(getItemLocalStorage('userEmail'))
         getUserDetails().then((res)=>{
             console.log(res)
-            setUser(res.data)
+            setUser(res.data.name)
         })
     }, [])
 
@@ -38,17 +38,16 @@ const Navbar = () => {
                 {user !== 'null' ? (
                     <Menu>
                         <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
-                        {user &&
                             <Tag size='lg' bg={'blue.300'} colorScheme='blue' borderRadius='full' mr={2}>
                                 <Avatar
                                     src='https://bit.ly/sage-adebayor'
                                     size='xs'
-                                    name={user.name}
+                                    name={user}
                                     ml={-1}
                                     mr={2}
                                 />
-                                <TagLabel>{user.name}</TagLabel>
-                            </Tag>}
+                                <TagLabel>{user}</TagLabel>
+                            </Tag>
                         </MenuButton>
                         <MenuList>
                             <Box
