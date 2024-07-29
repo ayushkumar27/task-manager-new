@@ -6,7 +6,7 @@ import {
   Heading, HStack, Input, Popover, PopoverArrow, PopoverBody, PopoverCloseButton,
   PopoverContent, PopoverHeader, PopoverTrigger, Select, Text, Textarea,
   useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton,
-  ModalBody, ModalFooter
+  ModalBody, ModalFooter,useToast
 } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
 import { createTask, deleteTask, editTask, getTaskbyId, getTasks, getTasksbyRange } from '../../../lib/apis/tasks';
@@ -14,6 +14,8 @@ import { TimestampToDate } from '../../../lib/utils/dateFormatter';
 import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 
 const Page = () => {
+
+  const toast = useToast()
 
   interface Task {
     _id: string;
@@ -47,6 +49,12 @@ const Page = () => {
         setAllTasks(res.data);
       });
       onCloseModal();
+      toast({
+        title: 'Task Created Successfully!',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      })
     });
   };
 
@@ -75,6 +83,12 @@ const Page = () => {
         setAllTasks(res.data);
         onCloseEditModal();
       });
+      toast({
+        title: 'Task Changed Successfully!',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      })
     });
   };
 
@@ -84,8 +98,15 @@ const Page = () => {
         setAllTasks(res.data);
       });
       onCloseModal();
+      toast({
+        title: 'Task Deleted Successfully!',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      })
     });
   };
+
 
   const handleView = (id:any) => {
     getTaskbyId(id).then((res) => {
