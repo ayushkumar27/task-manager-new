@@ -89,7 +89,7 @@ const Index = () => {
               setConfirmPassword(e.target.value)
             }}/></FormControl>
             {(password!=confirmPassword || firstName.length==0|| lastName.length==0||email.length==0 || password.length==0)&&
-            <Text as='b' color='red'>*Please fill all required fields</Text>}
+            <Text as='i' color='red'>*Please fill all required fields</Text>}
             <Button onClick={handleSubmit} isDisabled={password!=confirmPassword || firstName.length==0|| lastName.length==0||email.length==0 || password.length==0} colorScheme="blue" size="md" width="full">
               Sign Up
             </Button>
