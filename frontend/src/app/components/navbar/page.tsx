@@ -17,13 +17,13 @@ const Navbar = () => {
     useEffect(() => {
         setUser(getItemLocalStorage('user'))
         setEmail(getItemLocalStorage('userEmail'))
-        const tokenDetail = getItemLocalStorage('token-details')
-        const parsedToken = JSON.parse(tokenDetail)
-        const { token } = parsedToken
+        // const tokenDetail = getItemLocalStorage('token-details')
+        // const parsedToken = JSON.parse(tokenDetail)
+        // const { token } = parsedToken
 
-        if (parsedToken && typeof parsedToken === 'object' && 'token' in parsedToken) {
+        // if (parsedToken && typeof parsedToken === 'object' && 'token' in parsedToken) {
 
-        console.log(parsedToken)}
+        // console.log(parsedToken)}
     }, [])
 
     
