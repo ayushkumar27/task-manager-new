@@ -107,7 +107,7 @@ const Index = () => {
               Login
             </Button>
             <Text textAlign="center">
-              Don`&apos`t have an account? <Link color="blue.500" href="/signup">Register</Link>
+            Don&apos;t have an account?<Link color="blue.500" href="/signup">Register</Link>
             </Text>
 
             <GoogleLogin
