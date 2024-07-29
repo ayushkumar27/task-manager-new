@@ -46,7 +46,7 @@ const Navbar = () => {
                                     ml={-1}
                                     mr={2}
                                 />
-                                <TagLabel>{user?.item?.name}</TagLabel>
+                                <TagLabel>{user}</TagLabel>
                             </Tag>
                         </MenuButton>
                         <MenuList>
