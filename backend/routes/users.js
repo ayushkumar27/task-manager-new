@@ -106,7 +106,7 @@ router.post('/register',(req,res)=>{
 
 router.get('/me', authenticateToken, (req,res)=>{
   user.findOne({_id: req.user.item.id}).then(
-    item => res.status(200).json(item)
+    (item) => res.status(200).json(item)
   ).catch(err=>res.status(404).json('user not found'))
 })
 
