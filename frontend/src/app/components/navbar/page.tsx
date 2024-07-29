@@ -17,7 +17,13 @@ const Navbar = () => {
     useEffect(() => {
         setUser(getItemLocalStorage('user'))
         setEmail(getItemLocalStorage('userEmail'))
+        const tokenDetail = getItemLocalStorage('token-details')
+        const parsedToken = JSON.parse(tokenDetail)
+        const { token } = parsedToken
+        setUser(token.item.name)
     }, [])
+
+    
 
 
     return (
@@ -32,7 +38,7 @@ const Navbar = () => {
                         <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
                             <Tag size='lg' bg={'blue.300'} colorScheme='blue' borderRadius='full' mr={2}>
                                 <Avatar
-                                    src='https://bit.ly/sage-adebayo'
+                                    src='https://bit.ly/sage-adebayor'
                                     size='xs'
                                     name={user}
                                     ml={-1}
