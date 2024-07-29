@@ -174,6 +174,7 @@ const Page = () => {
   useEffect(() => {
     getTasksbyRange(range).then((res) => {
       setFilteredTasks(res.data);
+      console.log('dfg')
     });
   }, [range, allTasks]);
 
