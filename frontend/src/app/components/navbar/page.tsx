@@ -38,6 +38,7 @@ const Navbar = () => {
                 {user !== 'null' ? (
                     <Menu>
                         <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+                        {user &&
                             <Tag size='lg' bg={'blue.300'} colorScheme='blue' borderRadius='full' mr={2}>
                                 <Avatar
                                     src='https://bit.ly/sage-adebayor'
@@ -47,7 +48,7 @@ const Navbar = () => {
                                     mr={2}
                                 />
                                 <TagLabel>{user.name}</TagLabel>
-                            </Tag>
+                            </Tag>}
                         </MenuButton>
                         <MenuList>
                             <Box
