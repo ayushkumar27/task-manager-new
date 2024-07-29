@@ -66,6 +66,7 @@ router.post('/login',(req,res)=>{
         if (item){
             if(item.comparePassword(password)){
                 jwt.sign({item}, secretKey,{expiresIn: '5h'},(err,token) => {
+                    console.log(user)
                     res.status(201).json({
                         message: 'User logged in successfully',
                         data: {
