@@ -1,5 +1,5 @@
 'use client'
-import { Box, Button, Center, Input, Link, Stack, Text, useToast } from '@chakra-ui/react'
+import { Box, Button, Center, Input, Link, Stack, Text, useToast,FormControl, FormLabel } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import Navbar from '../components/navbar/page'
 import { RegisterUser } from '../../../lib/apis/user'
@@ -43,6 +43,8 @@ const Index = () => {
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+
 
 
   return (
@@ -61,21 +63,30 @@ const Index = () => {
             <Text fontSize="2xl" fontWeight="bold" textAlign="center">
               Sign Up
             </Text>
+            <FormControl mb={4}>
+            <FormLabel>First Name</FormLabel>
             <Input placeholder="First Name" onChange={(e)=>{
               setFirstName(e.target.value)
-            }} type="text" />
+            }} type="text" /></FormControl>
+             <FormControl mb={4}>
+             <FormLabel>Last Name</FormLabel>
             <Input placeholder="Last Name" type="text" onChange={(e)=>{
               setLastName(e.target.value)
-            }}/>
-
+            }}/></FormControl>
+           <FormControl mb={4}>
+           <FormLabel>Email</FormLabel>
             <Input placeholder="Email" type="email" onChange={(e)=>{
               setEmail(e.target.value)
             }}/>
             <Input placeholder="Password" type="password" onChange={(e)=>{
               setPassword(e.target.value)
-            }}/>
-            <Input placeholder="Confirm Password" type="password" />
-            <Button onClick={handleSubmit} colorScheme="blue" size="md" width="full">
+            }}/></FormControl>
+             <FormControl mb={4}>
+             <FormLabel>Confirm Password</FormLabel>
+            <Input placeholder="Confirm Password" type="password" onChange={(e)=>{
+              setConfirmPassword(e.target.value)
+            }}/></FormControl>
+            <Button onClick={handleSubmit} isDisabled={password!=confirmPassword} colorScheme="blue" size="md" width="full">
               Sign Up
             </Button>
             <Text textAlign="center">
