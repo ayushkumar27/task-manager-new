@@ -14,7 +14,7 @@ const Navbar = () => {
 
     const router = useRouter();
 
-    const [user, setUser] = useState()
+    const [user, setUser] = useState('')
     const [email, setEmail] = useState()
     useEffect(() => {
         setUser(getItemLocalStorage('user'))
