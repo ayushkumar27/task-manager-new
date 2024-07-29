@@ -77,7 +77,9 @@ const Index = () => {
            <FormLabel>Email</FormLabel>
             <Input placeholder="Email" type="email" onChange={(e)=>{
               setEmail(e.target.value)
-            }}/>
+            }}/></FormControl>
+            <FormControl mb={4}>
+            <FormLabel>Password</FormLabel>
             <Input placeholder="Password" type="password" onChange={(e)=>{
               setPassword(e.target.value)
             }}/></FormControl>
