@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 import { getItemLocalStorage } from '../../../../lib/utils/base'
 import { HiOutlineLogout } from "react-icons/hi";
 import { jwtDecode } from 'jwt-decode'
+import { getUserDetails } from '../../../../lib/apis/user'
 
 
 const Navbar = () => {
@@ -18,20 +19,10 @@ const Navbar = () => {
     useEffect(() => {
         setUser(getItemLocalStorage('user'))
         setEmail(getItemLocalStorage('userEmail'))
-        const tokenDetail = getItemLocalStorage('token-details')
-        if(tokenDetail){
-
-        
-        const parsedToken = JSON.parse(tokenDetail)
-
-        if (parsedToken && typeof parsedToken === 'object' && 'token' in parsedToken) {
-            const { token } = parsedToken
-            const users = jwtDecode(token)
-
-
-        console.log(users)
-        setUser(users)
-    }}
+        getUserDetails().then((res)=>{
+            console.log(res.data)
+            setUser(res.data)
+        })
     }, [])
 
     
