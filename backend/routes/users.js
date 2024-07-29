@@ -88,9 +88,7 @@ router.post('/login',(req,res)=>{
 
 router.post('/register',(req,res)=>{
     const email = req.body.email
-    if(user.findOne({email: email})){
-        res.status(400).json('User already exists!')}
-    else{
+   
     user.create(req.body.payload).then(
         users => {
         res.status(201).json({
@@ -100,7 +98,7 @@ router.post('/register',(req,res)=>{
                 email: 'req.body.payload.email'
             }
         })}
-    ).catch(err=> res.status(400).json(err))}
+    ).catch(err=> res.status(400).json(err))
 
 })
 
