@@ -99,11 +99,11 @@ const Index = () => {
             </Text>
             <FormControl mb={4}>
               <FormLabel>Email</FormLabel>
-            <Input placeholder="Email" type="email" onChange={(e) => setEmail(e.target.value)} /></FormControl>
+            <Input placeholder="Email" type="email" isRequired onChange={(e) => setEmail(e.target.value)} /></FormControl>
             <FormControl mb={4}>
               <FormLabel>Password</FormLabel>
-            <Input placeholder="Password" type="password" onChange={(e) => setPassword(e.target.value)} /></FormControl>
-            <Button onClick={handleLogin} colorScheme="blue" size="md" width="full">
+            <Input placeholder="Password" type="password" isRequired onChange={(e) => setPassword(e.target.value)} /></FormControl>
+            <Button onClick={handleLogin} colorScheme="blue" isDisabled={email.length==0||password.length==0} size="md" width="full">
               Login
             </Button>
             <Text textAlign="center">

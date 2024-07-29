@@ -65,30 +65,30 @@ const Index = () => {
             </Text>
             <FormControl mb={4}>
             <FormLabel>First Name</FormLabel>
-            <Input placeholder="First Name" onChange={(e)=>{
+            <Input placeholder="First Name" isRequired onChange={(e)=>{
               setFirstName(e.target.value)
             }} type="text" /></FormControl>
              <FormControl mb={4}>
              <FormLabel>Last Name</FormLabel>
-            <Input placeholder="Last Name" type="text" onChange={(e)=>{
+            <Input placeholder="Last Name" isRequired type="text" onChange={(e)=>{
               setLastName(e.target.value)
             }}/></FormControl>
            <FormControl mb={4}>
            <FormLabel>Email</FormLabel>
-            <Input placeholder="Email" type="email" onChange={(e)=>{
+            <Input placeholder="Email" isRequired type="email" onChange={(e)=>{
               setEmail(e.target.value)
             }}/></FormControl>
             <FormControl mb={4}>
             <FormLabel>Password</FormLabel>
-            <Input placeholder="Password" type="password" onChange={(e)=>{
+            <Input placeholder="Password" isRequired type="password" onChange={(e)=>{
               setPassword(e.target.value)
             }}/></FormControl>
              <FormControl mb={4}>
              <FormLabel>Confirm Password</FormLabel>
-            <Input placeholder="Confirm Password" type="password" onChange={(e)=>{
+            <Input placeholder="Confirm Password" isRequired type="password" onChange={(e)=>{
               setConfirmPassword(e.target.value)
             }}/></FormControl>
-            <Button onClick={handleSubmit} isDisabled={password!=confirmPassword} colorScheme="blue" size="md" width="full">
+            <Button onClick={handleSubmit} isDisabled={password!=confirmPassword || firstName.length==0|| lastName.length==0||email.length==0} colorScheme="blue" size="md" width="full">
               Sign Up
             </Button>
             <Text textAlign="center">
