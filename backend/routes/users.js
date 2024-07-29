@@ -17,8 +17,7 @@ passport.use(new GoogleStrategy({
     callbackURL: '/api/auth/google/callback'
   },
   (accessToken, refreshToken, profile, done) => {
-    // Here, you can create or find a user in your database based on profile.id
-    // For example:
+
     User.findOne({ googleId: profile.id })
       .then(user => {
         if (user) {
@@ -52,7 +51,6 @@ passport.deserializeUser((id, done) => {
 router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 router.get('/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), (req, res) => {
-  // Successful authentication, redirect home or set a cookie
   res.redirect('/home');
 });
 
@@ -88,6 +86,10 @@ router.post('/login',(req,res)=>{
 })
 
 router.post('/register',(req,res)=>{
+    const email = req.body.email
+    if(user.findOne({email: email})){
+        res.status(400).json('User already exists!')}
+    else{
     user.create(req.body.payload).then(
         users => {
         res.status(201).json({
@@ -97,7 +99,7 @@ router.post('/register',(req,res)=>{
                 email: 'req.body.payload.email'
             }
         })}
-    ).catch(err=> res.status(400).json(err))
+    ).catch(err=> res.status(400).json(err))}
 
 })
 
