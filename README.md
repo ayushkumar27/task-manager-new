@@ -1,81 +1,138 @@
-# Project Overview: Task Management System
+Sure! Here is a `README.md` for your GitHub repository:
 
+```markdown
+# Task Management System
 
-This Task Management System is a full-stack web application designed to help users efficiently manage their tasks. It features user authentication, task creation, modification, deletion, and organization through a user-friendly interface. The project leverages modern web technologies including Express.js, MongoDB, JWT, Google OAuth 2.0, React, and Chakra UI to deliver a seamless experience.
+This Task Management System is a full-stack web application designed to help users efficiently manage their tasks. It features user authentication, task creation, modification, deletion, and organization through a user-friendly interface.
 
-Project Components
-Backend: Built with Express.js, the backend handles user authentication, task management, and serves as the API provider.
+## Table of Contents
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [API Endpoints](#api-endpoints)
+- [Contributing](#contributing)
+- [License](#license)
 
-User Authentication:
-JWT Authentication: Users can register and log in using email and password. Passwords are securely hashed, and JWT tokens are issued for session management.
-Google OAuth 2.0: Integration with Google OAuth allows users to authenticate using their Google accounts.
-Task Management:
-CRUD operations for tasks.
-Endpoints to retrieve tasks based on different criteria (e.g., by date range).
-Database: MongoDB is used to store user and task data, with Mongoose for object data modeling.
-Frontend: Developed using React and Chakra UI for a responsive and visually appealing user interface.
+## Features
+- Secure user authentication with JWT.
+- Google OAuth 2.0 integration.
+- Create, read, update, and delete (CRUD) tasks.
+- Drag-and-drop interface for task organization.
+- Search and filter tasks by title, description, and date range.
+- Responsive design for both desktop and mobile devices.
 
-Pages and Components:
-Home Page: Displays all tasks with search and filter functionalities.
-Task Modals: Modals for adding, viewing, and editing tasks.
-Drag-and-Drop Interface: Users can drag and drop tasks to change their status.
-State Management: React's useState and useEffect hooks manage the application state.
-API Integration: Axios is used for making API requests to the backend.
-Routing and Middleware:
+## Tech Stack
+### Backend
+- Node.js
+- Express.js
+- MongoDB with Mongoose
+- JWT for authentication
+- Passport.js for Google OAuth 2.0
 
-Express.js Routes: Routes for user registration, login, and task management.
-Middleware: Middleware for JWT authentication to protect routes and ensure secure access.
-Technical Stack
-Backend:
+### Frontend
+- React
+- Chakra UI
+- Axios for API requests
+- @hello-pangea/dnd for drag-and-drop functionality
 
-Node.js
-Express.js
-MongoDB with Mongoose
-JWT for authentication
-Passport.js for Google OAuth 2.0
-Frontend:
+## Installation
 
-React
-Chakra UI
-Axios for API requests
-@hello-pangea/dnd for drag-and-drop functionality
-Key Features
-User Authentication:
+### Backend
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/task-management-system.git
+   ```
+2. Navigate to the backend directory:
+   ```bash
+   cd task-management-system/backend
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Set up environment variables for MongoDB connection and Google OAuth credentials:
+   - Create a `.env` file in the backend directory with the following content:
+     ```env
+     MONGODB_URI=your_mongodb_connection_string
+     JWT_SECRET=your_jwt_secret
+     GOOGLE_CLIENT_ID=your_google_client_id
+     GOOGLE_CLIENT_SECRET=your_google_client_secret
+     ```
+5. Start the server:
+   ```bash
+   npm start
+   ```
 
-Secure user registration and login using JWT.
-Google OAuth 2.0 integration for seamless authentication.
-Task Management:
+### Frontend
+1. Navigate to the frontend directory:
+   ```bash
+   cd task-management-system/frontend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-CRUD operations for tasks.
-Drag-and-drop interface for task organization.
-Search and filter tasks by title, description, and date range.
-Responsive Design:
+## Usage
+1. Open your browser and navigate to `http://localhost:3000`.
+2. Register or log in to your account.
+3. Create, view, edit, and manage your tasks through the user-friendly interface.
 
-Uses Chakra UI for a responsive and accessible user interface.
-Optimized for both desktop and mobile devices.
-Project Structure
-Backend:
+## Project Structure
+```
+task-management-system/
+├── backend/
+│   ├── models/
+│   │   └── userModel.js
+│   │   └── taskModel.js
+│   ├── routes/
+│   │   └── users.js
+│   │   └── tasks.js
+│   ├── middleware/
+│   │   └── auth.js
+│   └── server.js
+├── frontend/
+│   ├── components/
+│   │   └── Navbar.js
+│   │   └── TaskModals.js
+│   ├── pages/
+│   │   └── index.js
+│   ├── lib/
+│   │   └── apis/
+│   │   │   └── tasks.js
+│   │   └── utils/
+│   │       └── dateFormatter.js
+│   └── styles/
+│       └── global.css
+└── README.md
+```
 
-models/: Contains Mongoose models for users and tasks.
-routes/: Defines API endpoints for user and task management.
-middleware/: Includes authentication middleware.
-server.js: Entry point for the Express.js server.
-Frontend:
+## API Endpoints
+### User Routes
+- `POST /register`: Register a new user.
+- `POST /login`: Log in a user.
+- `GET /google`: Initiate Google OAuth authentication.
+- `GET /google/callback`: Handle Google OAuth callback.
 
-components/: Reusable UI components (e.g., Navbar, TaskModals).
-pages/: Page components for different views.
-lib/apis/: API utility functions for interacting with the backend.
-lib/utils/: Utility functions (e.g., date formatting).
-Installation and Setup
-Backend:
+### Task Routes
+- `POST /tasks`: Create a new task.
+- `GET /tasks`: Retrieve all tasks.
+- `GET /tasks/:id`: Retrieve a specific task by ID.
+- `PUT /tasks/:id`: Update a task by ID.
+- `DELETE /tasks/:id`: Delete a task by ID.
+- `GET /tasks/range/:range`: Retrieve tasks within a specific date range.
 
-Install dependencies: npm install
-Set up environment variables for MongoDB connection and Google OAuth credentials.
-Start the server: npm start
-Frontend:
+## Contributing
+Contributions are welcome! Please fork the repository and create a pull request to add new features, fix bugs, or improve documentation.
 
-Navigate to the frontend directory.
-Install dependencies: npm install
-Start the development server: npm run dev
-Conclusion
-This Task Management System provides a robust solution for managing tasks with features like secure user authentication, intuitive drag-and-drop task organization, and a responsive design. The integration of modern technologies ensures a smooth user experience and a scalable architecture for future enhancements.
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+```
+
+Feel free to adjust any sections as needed to better fit your project specifics.
