@@ -6,6 +6,7 @@ import { redirect } from 'next/dist/server/api-utils'
 import { useRouter } from 'next/navigation'
 import { getItemLocalStorage } from '../../../../lib/utils/base'
 import { HiOutlineLogout } from "react-icons/hi";
+import { jwtDecode } from 'jwt-decode'
 
 
 const Navbar = () => {
@@ -25,9 +26,10 @@ const Navbar = () => {
 
         if (parsedToken && typeof parsedToken === 'object' && 'token' in parsedToken) {
             const { token } = parsedToken
+            const user = jwtDecode(token)
 
 
-        console.log(parsedToken)}}
+        console.log(user)}}
     }, [])
 
     
