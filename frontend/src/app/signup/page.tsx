@@ -88,7 +88,9 @@ const Index = () => {
             <Input placeholder="Confirm Password" isRequired type="password" onChange={(e)=>{
               setConfirmPassword(e.target.value)
             }}/></FormControl>
-            <Button onClick={handleSubmit} isDisabled={password!=confirmPassword || firstName.length==0|| lastName.length==0||email.length==0} colorScheme="blue" size="md" width="full">
+            {(password!=confirmPassword || firstName.length==0|| lastName.length==0||email.length==0 || password.length==0)&&
+            <Text as='b' color='red'>*Please fill all required fields</Text>}
+            <Button onClick={handleSubmit} isDisabled={password!=confirmPassword || firstName.length==0|| lastName.length==0||email.length==0 || password.length==0} colorScheme="blue" size="md" width="full">
               Sign Up
             </Button>
             <Text textAlign="center">
