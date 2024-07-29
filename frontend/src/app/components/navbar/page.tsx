@@ -19,10 +19,11 @@ const Navbar = () => {
         setEmail(getItemLocalStorage('userEmail'))
         const tokenDetail = getItemLocalStorage('token-details')
         const parsedToken = JSON.parse(tokenDetail)
-        if (parsedToken && typeof parsedToken === 'object' && 'expiry' in parsedToken) {
-
         const { token } = parsedToken
-        setUser(token.item.name)}
+
+        if (parsedToken && typeof parsedToken === 'object' && 'token' in parsedToken) {
+
+        console.log(token)}
     }, [])
 
     
