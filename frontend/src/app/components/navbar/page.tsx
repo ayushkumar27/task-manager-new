@@ -23,7 +23,7 @@ const Navbar = () => {
 
         if (parsedToken && typeof parsedToken === 'object' && 'token' in parsedToken) {
 
-        console.log(token)}
+        console.log(parsedToken)}
     }, [])
 
     
