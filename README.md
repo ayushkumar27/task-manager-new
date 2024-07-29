@@ -1,4 +1,6 @@
-Project Overview: Task Management System
+# Project Overview: Task Management System
+
+
 This Task Management System is a full-stack web application designed to help users efficiently manage their tasks. It features user authentication, task creation, modification, deletion, and organization through a user-friendly interface. The project leverages modern web technologies including Express.js, MongoDB, JWT, Google OAuth 2.0, React, and Chakra UI to deliver a seamless experience.
 
 Project Components
