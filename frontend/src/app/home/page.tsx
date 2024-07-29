@@ -35,6 +35,10 @@ const Page = () => {
   const [range, setRange] = useState<string>('')
 
   const handleAdd = () => {
+    setTitle('')
+    setDescription('')
+    setStatus('')
+    setDeadline('')
     let payload = {
       title: title,
       description: description,
@@ -319,7 +323,7 @@ const Page = () => {
             </FormControl>
           </ModalBody>
           <ModalFooter>
-            <Button colorScheme='blue' onClick={handleEdit(taskId)}>Save Changes</Button>
+            <Button colorScheme='blue' onClick={()=>handleEdit(taskId)}>Save Changes</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
