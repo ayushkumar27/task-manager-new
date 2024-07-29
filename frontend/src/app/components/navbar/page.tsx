@@ -21,7 +21,7 @@ const Navbar = () => {
         setEmail(getItemLocalStorage('userEmail'))
         getUserDetails().then((res)=>{
             console.log(res)
-            // setUser(res.data)
+            setUser(res.data)
         })
     }, [])
 
@@ -42,11 +42,11 @@ const Navbar = () => {
                                 <Avatar
                                     src='https://bit.ly/sage-adebayor'
                                     size='xs'
-                                    name='User'
+                                    name={user.name}
                                     ml={-1}
                                     mr={2}
                                 />
-                                <TagLabel>user</TagLabel>
+                                <TagLabel>{user.name}</TagLabel>
                             </Tag>
                         </MenuButton>
                         <MenuList>
