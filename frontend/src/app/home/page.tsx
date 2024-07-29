@@ -341,7 +341,7 @@ const Page = () => {
             </FormControl>
             <FormControl mb={4}>
               <FormLabel>Deadline</FormLabel>
-              <Input type='datetime-local' value={deadline} onChange={(e) => setDeadline(e.target.value)} />
+              <Input value={deadline} onChange={(e) => setDeadline(e.target.value)} />
             </FormControl>
           </ModalBody>
           <ModalFooter>
@@ -379,7 +379,7 @@ const Page = () => {
             </FormControl>
             <FormControl mb={4}>
               <FormLabel>Deadline</FormLabel>
-              <Input type='datetime-local' value={deadline} readOnly />
+              <Input value={deadline} readOnly />
             </FormControl>
           </ModalBody>
         </ModalContent>
