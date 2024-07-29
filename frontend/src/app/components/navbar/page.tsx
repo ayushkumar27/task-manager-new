@@ -20,7 +20,8 @@ const Navbar = () => {
         setUser(getItemLocalStorage('user'))
         setEmail(getItemLocalStorage('userEmail'))
         getUserDetails().then((res)=>{
-            console.log(res.data)
+            console.log(res)
+            // setUser(res.data)
         })
     }, [])
 
