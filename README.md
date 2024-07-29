@@ -84,35 +84,6 @@ This Task Management System is a full-stack web application designed to help use
 2. Register or log in to your account.
 3. Create, view, edit, and manage your tasks through the user-friendly interface.
 
-## Project Structure
-```
-task-management-system/
-├── backend/
-│   ├── models/
-│   │   └── userModel.js
-│   │   └── taskModel.js
-│   ├── routes/
-│   │   └── users.js
-│   │   └── tasks.js
-│   ├── middleware/
-│   │   └── auth.js
-│   └── server.js
-├── frontend/
-│   ├── components/
-│   │   └── Navbar.js
-│   │   └── TaskModals.js
-│   ├── pages/
-│   │   └── index.js
-│   ├── lib/
-│   │   └── apis/
-│   │   │   └── tasks.js
-│   │   └── utils/
-│   │       └── dateFormatter.js
-│   └── styles/
-│       └── global.css
-└── README.md
-```
-
 ## API Endpoints
 ### User Routes
 - `POST /register`: Register a new user.
