@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export const api = axios.create({
-    baseURL: 'https://task-manager-new-cwse.onrender.com'
+    baseURL: 'https://task-manager-new-lpbv.onrender.com'
 })
 
 export const getItemLocalStorage = (item:any, dataType?: any) =>{
