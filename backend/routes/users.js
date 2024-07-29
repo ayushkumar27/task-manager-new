@@ -103,7 +103,7 @@ router.post('/register',(req,res)=>{
 })
 
 router.get('/me', authenticateToken, (req, res) => {
-  const userId = req.user._id;
+  const userId = req.user.item._id;
   user.findById(userId)
     .then(user => {
       if (user) {
