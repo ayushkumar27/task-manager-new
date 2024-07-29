@@ -29,8 +29,8 @@ const Navbar = () => {
             const user = jwtDecode(token)
 
 
-        console.log(user.item.name)
-        setUser(user.item.name)
+        console.log(user)
+        setUser(user)
     }}
     }, [])
 
@@ -55,7 +55,7 @@ const Navbar = () => {
                                     ml={-1}
                                     mr={2}
                                 />
-                                <TagLabel>{user}</TagLabel>
+                                <TagLabel>{user?.item?.name}</TagLabel>
                             </Tag>
                         </MenuButton>
                         <MenuList>
