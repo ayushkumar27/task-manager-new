@@ -319,7 +319,7 @@ const Page = () => {
             </FormControl>
           </ModalBody>
           <ModalFooter>
-            <Button colorScheme='blue' onClick={handleEdit}>Save Changes</Button>
+            <Button colorScheme='blue' onClick={handleEdit(taskId)}>Save Changes</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
