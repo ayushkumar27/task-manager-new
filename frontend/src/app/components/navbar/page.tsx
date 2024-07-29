@@ -27,7 +27,7 @@ const Navbar = () => {
             const { token } = parsedToken
 
 
-        console.log(token)}}
+        console.log(parsedToken)}}
     }, [])
 
     
