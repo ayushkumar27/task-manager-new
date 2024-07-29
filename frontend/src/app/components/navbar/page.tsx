@@ -26,11 +26,11 @@ const Navbar = () => {
 
         if (parsedToken && typeof parsedToken === 'object' && 'token' in parsedToken) {
             const { token } = parsedToken
-            const user = jwtDecode(token)
+            const users = jwtDecode(token)
 
 
-        console.log(user)
-        setUser(user)
+        console.log(users)
+        setUser(users)
     }}
     }, [])
 
