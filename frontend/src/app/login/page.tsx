@@ -41,7 +41,7 @@ const Index = () => {
   const clientId = '374367574313-msd8avj5u2qom3ep7haatisa834o3u98.apps.googleusercontent.com';
   const handleLoginSuccess = async (response:any) => {
     try {
-      const res = await fetch('https://task-manager-logf.onrender.com/api/auth/google', {
+      const res = await fetch('https://task-manager-new-lpbv.onrender.com/api/auth/google', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
