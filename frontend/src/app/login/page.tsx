@@ -1,5 +1,5 @@
 'use client'
-import { Alert, AlertIcon, Box, Button, Center, Flex, Input, Link, Stack, Text } from '@chakra-ui/react'
+import { Alert, AlertIcon, Box, Button, Center,FormControl, FormLabel, Flex, Input, Link, Stack, Text } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import Navbar from '../components/navbar/page'
 import { loginUser } from '../../../lib/apis/user'
@@ -97,8 +97,12 @@ const Index = () => {
             <Text fontSize="2xl" fontWeight="bold" textAlign="center">
               Login
             </Text>
-            <Input placeholder="Email" type="email" onChange={(e) => setEmail(e.target.value)} />
-            <Input placeholder="Password" type="password" onChange={(e) => setPassword(e.target.value)} />
+            <FormControl mb={4}>
+              <FormLabel>Email</FormLabel>
+            <Input placeholder="Email" type="email" onChange={(e) => setEmail(e.target.value)} /></FormControl>
+            <FormControl mb={4}>
+              <FormLabel>Password</FormLabel>
+            <Input placeholder="Password" type="password" onChange={(e) => setPassword(e.target.value)} /></FormControl>
             <Button onClick={handleLogin} colorScheme="blue" size="md" width="full">
               Login
             </Button>
