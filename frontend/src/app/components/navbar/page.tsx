@@ -29,7 +29,9 @@ const Navbar = () => {
             const user = jwtDecode(token)
 
 
-        console.log(user)}}
+        console.log(user.item.name)
+        setUser(user.item.name)
+    }}
     }, [])
 
     
