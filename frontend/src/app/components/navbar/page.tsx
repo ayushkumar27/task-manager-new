@@ -21,7 +21,6 @@ const Navbar = () => {
         setEmail(getItemLocalStorage('userEmail'))
         getUserDetails().then((res)=>{
             console.log(res.data)
-            // setUser(res.data)
         })
     }, [])
 
