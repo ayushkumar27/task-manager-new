@@ -6,7 +6,7 @@ import {
   Heading, HStack, Input, Popover, PopoverArrow, PopoverBody, PopoverCloseButton,
   PopoverContent, PopoverHeader, PopoverTrigger, Select, Text, Textarea,
   useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton,
-  ModalBody, ModalFooter
+  ModalBody, ModalFooter,useToast
 } from '@chakra-ui/react';
 import { AddIcon } from '@chakra-ui/icons';
 import { createTask, deleteTask, editTask, getTaskbyId, getTasks, getTasksbyRange } from '../../../lib/apis/tasks';
@@ -23,6 +23,9 @@ const Page = () => {
     created: string;
     deadline: string;
   }
+
+  const toast = useToast()
+
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -51,6 +54,12 @@ const Page = () => {
         setAllTasks(res.data);
       });
       onCloseModal();
+      toast({
+        title: 'Task Created Successfully!',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      })
     });
   };
 
@@ -79,6 +88,12 @@ const Page = () => {
         setAllTasks(res.data);
         onCloseEditModal();
       });
+      toast({
+        title: 'Task Changed Successfully!',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      })
     });
   };
 
@@ -88,6 +103,12 @@ const Page = () => {
         setAllTasks(res.data);
       });
       onCloseModal();
+      toast({
+        title: 'Task Deleted Successfully!',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      })
     });
   };
 
