@@ -108,7 +108,7 @@ router.get('/me', authenticateToken, (req, res) => {
     .then(user => {
       if (user) {
         
-        res.status(200).json();
+        res.status(200).json({name: user.name});
       } else {
         res.status(404).json({ message: 'User not found' });
       }
